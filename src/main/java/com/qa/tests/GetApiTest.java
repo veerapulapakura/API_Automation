@@ -6,6 +6,7 @@ import junit.framework.Assert;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
@@ -50,21 +51,28 @@ public class GetApiTest extends Testbase {
         System.out.println("JSON Response is  "+jsonResponse);
 
         // Single value assertions
-        String perpage = testUtil.JsonParsing(jsonResponse, "per_page"  );
+
+       /* String perpage = testUtil.getValueBypath(jsonResponse, "/per_page"  );
+        System.out.println("Printing perpage from GetApi method  " + perpage );
+        Assert.assertEquals(Integer.parseInt(perpage), 6);
+*/
+        String perpage = testUtil.JsonParsingJsonObject(jsonResponse, "per_page"  );
         System.out.println("Printing perpage from GetApi method  " + perpage );
         Assert.assertEquals(Integer.parseInt(perpage), 6);
 
-        String totalValue = testUtil.JsonParsing(jsonResponse,"total");
+        String totalValue = testUtil.JsonParsingJsonObject(jsonResponse,"total");
         System.out.println("Value of per_page is   "+ totalValue);
         Assert.assertEquals(Integer.parseInt(totalValue), 12);
 
 
         // getting data from the Array
-       /* String Lastname = testUtil.JsonParsing(jsonResponse, "data[]/last_name");
-        String Firstname = testUtil.JsonParsing(jsonResponse, "data[]/first_name");
-        String Acatar = testUtil.JsonParsing(jsonResponse, "data[]/avatar");
-        String ID = testUtil.JsonParsing(jsonResponse, "data[]/id");
-*/
+        JSONArray Lastname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+        System.out.println("Json array from the response is   "+ Lastname);
+
+        JSONArray Firstname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+        JSONArray Acatar = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+        JSONArray ID = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+
 
         // Getting all headers into Hash Map
         Header[] headersArray= closeableHttpResponse.getAllHeaders();
