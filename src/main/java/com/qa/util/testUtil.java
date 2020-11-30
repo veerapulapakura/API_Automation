@@ -22,14 +22,15 @@ public class testUtil {
         return jObject;
            }
 
-    public static JSONArray JsonParsingJsonArray(JSONObject jsonResponse, String arrayPath) {
-        JSONArray jArrayValue= (JSONArray) jsonResponse.get(arrayPath);
-        // read json array
-       /* JSONArray arrObj = (JSONArray) jsonResponse.get(arrayPath);
-        System.out.println("\narrayPath");
-        for(JsonValue value : arrObj){
-            System.out.println(value.toString());
-        }*/
-        return jArrayValue;
+    public static String JsonParsingJsonArray(JSONObject jsonResponse, String arrayPath) {
+        JSONArray jArrayValue = (JSONArray) jsonResponse.get(arrayPath);
+       int n = jArrayValue.length();
+        Object itemId = null;
+        for (int i = 0; i < n; i++) {
+            itemId = jArrayValue.get(i);
+            System.out.println(i+" item from the array is "+itemId);
+            }
+        return String.valueOf(itemId);
+
     }
 }

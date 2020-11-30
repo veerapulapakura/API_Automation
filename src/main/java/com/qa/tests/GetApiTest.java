@@ -66,14 +66,15 @@ public class GetApiTest extends Testbase {
 
 
         // getting data from the Array
-        JSONArray Lastname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+        String Lastname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
         System.out.println("Json array from the response is   "+ Lastname);
 
-        JSONArray Firstname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+
+        /*JSONArray Firstname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
         JSONArray Acatar = testUtil.JsonParsingJsonArray(jsonResponse, "data");
         JSONArray ID = testUtil.JsonParsingJsonArray(jsonResponse, "data");
 
-
+*/
         // Getting all headers into Hash Map
         Header[] headersArray= closeableHttpResponse.getAllHeaders();
         HashMap<String, String> allheaders= new  HashMap<String, String>();
