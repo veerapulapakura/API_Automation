@@ -46,7 +46,7 @@ public class testUtil {
             JSONObject jsonobject = jArrayValue.getJSONObject(i);
             firstname = jsonobject.getString("first_name");
             lastname = jsonobject.getString("last_name");
-            sb.append(firstname+" --  "+lastname+"\n");
+            sb.append(firstname+"--"+lastname+"\n");
             //System.out.println(" FirstName from JSON Array 0 is  "+firstname);
             //System.out.println(" LastName  from JSON Array 0 is  "+lastname);
             //System.out.println(i+" item from the array is "+itemId);

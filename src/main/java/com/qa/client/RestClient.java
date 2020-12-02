@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RestClient {
 
@@ -18,6 +19,18 @@ public class RestClient {
     public CloseableHttpResponse get(String url) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
+        CloseableHttpResponse closeableHttpResponse = httpClient.execute(httpGet); // Hitting the GET URL
+        return closeableHttpResponse;
+    }
+
+    public CloseableHttpResponse get(String url, HashMap<String, String> headerMap) throws IOException {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(url);
+
+        for(Map.Entry<String,String> entry : headerMap.entrySet())
+        {
+            httpGet.addHeader(entry.getKey(), entry.getValue());
+        }
         CloseableHttpResponse closeableHttpResponse = httpClient.execute(httpGet); // Hitting the GET URL
         return closeableHttpResponse;
     }
