@@ -65,9 +65,9 @@ public class GetApiTest extends Testbase {
         Assert.assertEquals(Integer.parseInt(totalValue), 12);
 
 
-        // getting data from the Array
-        String Lastname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
-        System.out.println("Json array from the response is   "+ Lastname);
+        // Parsing  data from the JSONArray, traversing  through all the elements and printing for that particular keys
+        String JsonArrayData = testUtil.JsonParsingJsonArray(jsonResponse, "data");
+        System.out.println("Json array from the response is   "+"\n\n" +JsonArrayData);
 
 
         /*JSONArray Firstname = testUtil.JsonParsingJsonArray(jsonResponse, "data");
@@ -75,7 +75,7 @@ public class GetApiTest extends Testbase {
         JSONArray ID = testUtil.JsonParsingJsonArray(jsonResponse, "data");
 
 */
-        // Getting all headers into Hash Map
+        // Getting all headers into Hash Map from json response
         Header[] headersArray= closeableHttpResponse.getAllHeaders();
         HashMap<String, String> allheaders= new  HashMap<String, String>();
         for(Header header:headersArray ) {

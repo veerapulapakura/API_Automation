@@ -20,9 +20,9 @@ public class testUtil {
     public static String  JsonParsingJsonObject(JSONObject responseOfJson, String pathvalue) throws ParseException {
         String jObject= responseOfJson.get(pathvalue).toString();
         return jObject;
-           }
+    }
 
-    public static String JsonParsingJsonArray(JSONObject jsonResponse, String arrayPath) {
+   /* public static String JsonParsingJsonArray(JSONObject jsonResponse, String arrayPath) {
         JSONArray jArrayValue = (JSONArray) jsonResponse.get(arrayPath);
        int n = jArrayValue.length();
         Object itemId = null;
@@ -31,6 +31,27 @@ public class testUtil {
             System.out.println(i+" item from the array is "+itemId);
             }
         return String.valueOf(itemId);
+
+    }*/
+
+    public static String JsonParsingJsonArray(JSONObject jsonResponse, String arrayPath) {
+        JSONArray jArrayValue = (JSONArray) jsonResponse.get(arrayPath);
+        int n = jArrayValue.length();
+        Object itemId= null;
+        String firstname = null;
+        String lastname = null;
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < n; i++) {
+            //itemId = jArrayValue.get(i);
+            JSONObject jsonobject = jArrayValue.getJSONObject(i);
+            firstname = jsonobject.getString("first_name");
+            lastname = jsonobject.getString("last_name");
+            sb.append(firstname+" --  "+lastname+"\n");
+            //System.out.println(" FirstName from JSON Array 0 is  "+firstname);
+            //System.out.println(" LastName  from JSON Array 0 is  "+lastname);
+            //System.out.println(i+" item from the array is "+itemId);
+        }
+        return sb.toString();
 
     }
 }
